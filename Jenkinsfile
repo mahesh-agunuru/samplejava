@@ -13,7 +13,7 @@ pipeline {
       }
       stage("Test") {
            steps {
-             echo 'test ......'
+             echo 'test .......'
                 snDevOpsStep '8935bc32db77f300e10d77bcbf9619f0'
                 snDevOpsChange()
                 sh 'mvn test -Dpublish'
