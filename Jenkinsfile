@@ -22,7 +22,7 @@ pipeline {
        }
       stage("Deploy") {
           steps {
-            echo 'Deploying....... '
+            echo 'Deploying......'
             snDevOpsStep '8d35bc32db77f300e10d77bcbf9619f0'
             snDevOpsChange()
           }
