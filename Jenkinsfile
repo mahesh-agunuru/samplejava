@@ -6,7 +6,7 @@ pipeline {
   stages {
       stage("Build") {
           steps {
-            echo 'build ........'
+            echo 'build .........'
               snDevOpsStep '0d35bc32db77f300e10d77bcbf9619f0'
               sh 'mvn clean install'
           }
@@ -22,7 +22,7 @@ pipeline {
        }
       stage("Deploy") {
           steps {
-            echo 'Deploying...... '
+            echo 'Deploying....... '
             snDevOpsStep '8d35bc32db77f300e10d77bcbf9619f0'
             snDevOpsChange()
           }
