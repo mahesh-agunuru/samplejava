@@ -1,33 +1,32 @@
 pipeline {
-   agent any
-   stages {
-       stage("build") {
+  agent any
+  tools {
+    maven "Maven"
+  }
+  stages {
+      stage("Build") {
+          steps {
+            echo 'build ........'
+              snDevOpsStep '044eacbadb37f300e10d77bcbf9619e7'
+              sh 'mvn clean install'
+          }
+      }
+      stage("Test") {
            steps {
-               snDevOpsStep '631dc9cd135b7300bcc3b2776144b038'
-               echo "Building"
-               sleep 5
+             echo 'test .....'
+                snDevOpsStep '804eacbadb37f300e10d77bcbf9619e7'
+                //snDevOpsChange()
+                sh 'mvn test -Dpublish'
+                junit '**/target/surefire-reports/*.xml'
            }
        }
-       stage("test") {
-           steps {
-               snDevOpsStep '6b1dc9cd135b7300bcc3b2776144b037'
-               echo "Testing"
-               sleep 3
-           }
-       }
-       stage("deploy") {
-           steps {
-               snDevOpsStep 'e31dc9cd135b7300bcc3b2776144b038'
-               echo "Deploying"
-               sleep 7
-           }
-       }
-       stage("prod") {
-           steps {
-               snDevOpsStep '671dc9cd135b7300bcc3b2776144b038'
-               echo "production"
-               sleep 7
-           }
-       }
-   }
+      stage("Deploy") {
+          steps {
+            echo 'Deploying...... '
+            snDevOpsStep '884eacbadb37f300e10d77bcbf9619e6'
+            sh 'mvn test -Dpublish'
+            junit '**/target/surefire-reports/*.xml'
+          }
+      }
+  }
 }
