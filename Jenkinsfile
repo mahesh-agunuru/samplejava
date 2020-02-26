@@ -22,9 +22,10 @@ pipeline {
           steps {
             echo 'Deploying..'
             snDevOpsStep()
-            snDevOpsChange()
-            sh 'mvn test -Dpublish'
-            junit '**/target/surefire-reports/*.xml'
+            sleep 5
+            //snDevOpsChange()
+            //sh 'mvn test -Dpublish'
+            //junit '**/target/surefire-reports/*.xml'
           }
       }
   }
